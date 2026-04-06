@@ -1,0 +1,23 @@
+[build]
+  command = "cd frontend && npm install && npm run build"
+  publish = "frontend/dist"
+
+# Static consent pages are served directly — must come BEFORE the SPA catch-all
+[[redirects]]
+  from = "/c/*"
+  to   = "/c/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/withdraw/*"
+  to   = "/withdraw/:splat"
+  status = 200
+
+# SPA catch-all (React Router) — all other routes serve index.html
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+[build.environment]
+  VITE_API_URL = "http://localhost/api"
