@@ -1,0 +1,4 @@
+/c/*
+  Access-Control-Allow-Origin: *
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
