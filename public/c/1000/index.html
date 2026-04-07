@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#1e40af">
-  <meta name="description" content="Data consent page for Sridevi Hospitals — DPDP Act 2023 compliant">
-  <meta property="og:title" content="Consent — Sridevi Hospitals">
+  <meta name="description" content="Data consent page for TestMe Shop — DPDP Act 2023 compliant">
+  <meta property="og:title" content="Consent — TestMe Shop">
   <meta property="og:description" content="DPDP Act 2023 compliant consent collection">
-  <title>Consent — Sridevi Hospitals</title>
+  <title>Consent — TestMe Shop</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -153,7 +153,7 @@
   <div id="app">
     <div class="header">
       <div class="header-badge">🛡️ DPDP COMPLIANT</div>
-      <div class="header-name">Sridevi Hospitals</div>
+      <div class="header-name">TestMe Shop</div>
       <div class="header-sub">Digital Personal Data Protection Act, 2023</div>
       <div class="shop-id-badge">SHOP ID: 1000</div>
     </div>
@@ -163,23 +163,17 @@
 
         <!-- Language tabs (shown only if >1 language) -->
         
-        <div class="lang-section">
-          <div class="lang-label">🌐 Choose Language</div>
-          <div class="lang-tabs" id="lang-tabs">
-            <button class="lang-tab active" data-lang="en" onclick="switchLang('en')">English</button><button class="lang-tab" data-lang="te" onclick="switchLang('te')">తెలుగు</button><button class="lang-tab" data-lang="kn" onclick="switchLang('kn')">ಕನ್ನಡ</button><button class="lang-tab" data-lang="hi" onclick="switchLang('hi')">हिन्दी</button>
-          </div>
-        </div>
 
         <!-- DPDP Notice -->
         <div class="notice-box">
           <div class="notice-title">📢 Data Privacy Notice — Sec. 5, DPDP Act 2023</div>
-          <div class="notice-text" id="notice-text">Sridevi Hospitals collects your name and mobile number for: Digital Invoicing, Marketing &amp; Offers, Loyalty Rewards, Feedback &amp; Service Updates, WhatsApp Communications. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1000/withdraw/</div>
+          <div class="notice-text" id="notice-text">TestMe Shop collects your name and mobile number for: Digital Invoicing. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1000/withdraw/</div>
         </div>
 
         <!-- Purposes summary -->
         <div style="margin-bottom:18px;padding:10px 14px;background:#f8fafc;border-radius:10px;font-size:12px;color:#374151;">
           <span style="font-weight:700;color:var(--blue);">Data collected for:</span>
-          <span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Digital Invoicing</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Marketing &amp; Offers</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Loyalty Rewards</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Feedback &amp; Service Updates</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">WhatsApp Communications</span>
+          <span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Digital Invoicing</span>
         </div>
 
         <!-- Consent Form -->
@@ -197,7 +191,7 @@
         <div class="consent-box" id="consent-box" onclick="toggleConsent()">
           <div class="checkbox" id="checkbox">&#10003;</div>
           <div class="consent-text">
-            I have read and understood the notice above. I freely and explicitly give consent to <strong>Sridevi Hospitals</strong> to collect and process my personal data for the stated purposes as per the DPDP Act, 2023.
+            I have read and understood the notice above. I freely and explicitly give consent to <strong>TestMe Shop</strong> to collect and process my personal data for the stated purposes as per the DPDP Act, 2023.
             <span class="required">⚠ Not pre-checked — your explicit consent is required (DPDP Act 2023, Sec. 6)</span>
           </div>
         </div>
@@ -228,7 +222,7 @@
       <div class="success-icon">✅</div>
       <div class="success-title">Consent Recorded!</div>
       <div class="success-sub">
-        Your consent with <strong>Sridevi Hospitals</strong> is securely recorded and protected under the DPDP Act 2023.
+        Your consent with <strong>TestMe Shop</strong> is securely recorded and protected under the DPDP Act 2023.
       </div>
       <div class="consent-id-box">
         <div class="consent-id-label">Your Consent ID</div>
@@ -246,13 +240,13 @@
   /* ── Embedded Config ─────────────────────────────────────────────────── */
   const CONFIG = {
     shopId:      1000,
-    merchantId:  "10e08751-f715-4502-bbc0-b576b70e1f77",
-    merchantName:"Sridevi Hospitals",
+    merchantId:  "ef8ee00c-df1f-48fb-8bad-0879b7062523",
+    merchantName:"TestMe Shop",
     apiBase:     '/api',
     siteBase:    "https://dpdpaudits.in",
-    purposes:    ["invoicing","marketing","loyalty","feedback","whatsapp"],
-    languages:   ["en","te","kn","hi"],
-    notices:     {"en":"Sridevi Hospitals collects your name and mobile number for: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1000/withdraw/","hi":"Sridevi Hospitals आपका नाम और मोबाइल नंबर निम्न उद्देश्यों के लिए एकत्र करता है: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications। आपका व्यक्तिगत डेटा डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) अधिनियम, 2023 के तहत सुरक्षित है। आप कभी भी सहमति वापस ले सकते हैं: https://dpdpaudits.in/c/1000/withdraw/","kn":"Sridevi Hospitals ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ಈ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಸಂಗ್ರಹಿಸುತ್ತದೆ: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications. ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಡೇಟಾ DPDP ಕಾಯ್ದೆ, 2023 ಅಡಿಯಲ್ಲಿ ಸುರಕ್ಷಿತ. ನೀವು ಯಾವಾಗ ಬೇಕಾದರೂ ಸಮ್ಮತಿ ರದ್ದು ಮಾಡಬಹುದು: https://dpdpaudits.in/c/1000/withdraw/","te":"Sridevi Hospitals మీ పేరు మరియు మొబైల్ నంబర్‌ను ఈ అవసరాల కోసం సేకరిస్తుంది: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications. మీ వ్యక్తిగత డేటా డిజిటల్ వ్యక్తిగత డేటా రక్షణ (DPDP) చట్టం, 2023 ప్రకారం సురక్షితంగా ఉంటుంది. మీరు ఎప్పుడైనా అనుమతి రద్దు చేయవచ్చు: https://dpdpaudits.in/c/1000/withdraw/"},
+    purposes:    ["invoicing"],
+    languages:   ["en"],
+    notices:     {"en":"TestMe Shop collects your name and mobile number for: Digital Invoicing. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1000/withdraw/"},
   };
 
   /* ── State ───────────────────────────────────────────────────────────── */
