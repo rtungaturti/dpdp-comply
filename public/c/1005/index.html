@@ -4,339 +4,391 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#1e40af">
-  <meta name="description" content="Data consent page for Sri Jay Kitrana stores — DPDP Act 2023 compliant">
-  <meta property="og:title" content="Consent — Sri Jay Kitrana stores">
-  <meta property="og:description" content="DPDP Act 2023 compliant consent collection">
-  <title>Consent — Sri Jay Kitrana stores</title>
+  <meta name="description" content="Data consent — Sri Rama Kirana Stores · DPDP Act 2023">
+  <title>Consent — Sri Rama Kirana Stores</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --blue:         #1e40af;
-      --blue-mid:     #2563eb;
-      --blue-light:   #dbeafe;
-      --blue-pale:    #eff6ff;
-      --green:        #16a34a;
-      --green-light:  #dcfce7;
-      --red:          #dc2626;
-      --red-light:    #fef2f2;
-      --yellow-light: #fffbeb;
-      --yellow-bdr:   #fde68a;
-      --text:         #1e293b;
-      --muted:        #64748b;
-      --border:       #e2e8f0;
-      --bg:           #f1f5f9;
-      --white:        #ffffff;
-      --shadow:       0 4px 24px rgba(0,0,0,0.10);
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --blue:#1e40af;--blue-mid:#2563eb;--blue-pale:#eff6ff;--blue-light:#dbeafe;
+      --green:#16a34a;--green-light:#dcfce7;
+      --red:#dc2626;--red-light:#fef2f2;
+      --amber-light:#fffbeb;--amber-bdr:#fde68a;
+      --text:#1e293b;--muted:#64748b;--border:#e2e8f0;--bg:#f1f5f9;--white:#ffffff;
     }
+    html,body{min-height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+    #app{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-bottom:40px}
+    .header{width:100%;background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:20px 20px 18px;text-align:center;border-radius:0 0 20px 20px;box-shadow:0 4px 20px rgba(30,64,175,.4);margin-bottom:20px}
+    .header-badge{font-size:11px;font-weight:700;letter-spacing:2px;color:#bfdbfe;margin-bottom:4px}
+    .header-name{font-size:20px;font-weight:800;color:#fff}
+    .header-sub{font-size:12px;color:#93c5fd;margin-top:4px}
+    .shop-badge{display:inline-block;margin-top:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#e0f2fe;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;letter-spacing:1px}
+    .card{background:var(--white);border-radius:16px;padding:20px;width:calc(100% - 32px);max-width:420px;box-shadow:0 4px 24px rgba(0,0,0,.10);margin-bottom:14px}
+    .card-title{font-weight:700;font-size:15px;color:var(--text);margin-bottom:14px}
+    .inp{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);font-size:16px;font-family:inherit;outline:none;background:#f8fafc;transition:border-color .15s}
+    .inp:focus{border-color:var(--blue-mid);background:#fff}
+    .btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;transition:opacity .15s}
+    .btn-primary{background:var(--blue-mid);color:#fff}
+    .btn-primary:disabled{background:#cbd5e1;cursor:not-allowed}
+    .btn-ghost{background:var(--white);color:var(--muted);border:1.5px solid var(--border);font-size:13px;margin-top:10px}
+    .btn-danger{background:var(--red);color:#fff;margin-top:10px}
+    .btn-green{background:var(--green);color:#fff}
+    .notice{background:var(--amber-light);border:1.5px solid var(--amber-bdr);border-radius:12px;padding:14px 16px;margin-bottom:18px}
+    .notice-title{font-weight:700;font-size:12px;color:#92400e;margin-bottom:8px}
+    .notice-text{font-size:13px;color:#374151;line-height:1.7}
+    .lang-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .lang-tab{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--muted);font-size:12px;cursor:pointer;font-family:inherit;font-weight:500}
+    .lang-tab.active{border-color:var(--blue-mid);background:var(--blue-pale);color:var(--blue-mid);font-weight:700}
+    .checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:14px;border-radius:12px;border:2px solid var(--border);background:var(--white);cursor:pointer;margin-bottom:14px;transition:border-color .15s}
+    .checkbox-row.checked{border-color:var(--blue-mid);background:var(--blue-pale)}
+    .chk{width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid #cbd5e1;background:var(--white);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;margin-top:1px;transition:all .15s}
+    .checkbox-row.checked .chk{border-color:var(--blue-mid);background:var(--blue-mid)}
+    .chk-text{font-size:12px;color:#374151;line-height:1.6}
+    .err{background:var(--red-light);border-radius:10px;padding:10px 14px;color:var(--red);font-size:13px;margin-bottom:12px}
+    .field{margin-bottom:14px}
+    .field label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px}
 
-    html, body { height: 100%; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+    /* Purpose pill */
+    .purpose-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);margin-bottom:8px;cursor:pointer;transition:all .15s}
+    .purpose-row.sel{border-color:var(--blue-mid);background:var(--blue-pale)}
+    .purpose-row.opted-in{border-color:var(--green);background:var(--green-light)}
+    .purpose-icon{font-size:22px}
+    .purpose-label{flex:1;font-size:13px;font-weight:600;color:var(--text)}
+    .purpose-badge{font-size:11px;padding:2px 8px;border-radius:12px;font-weight:700}
+    .badge-in{background:var(--green-light);color:var(--green)}
+    .badge-out{background:#f1f5f9;color:var(--muted)}
+    .purpose-chk{width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700}
+    .purpose-row.sel .purpose-chk{border-color:var(--blue-mid);background:var(--blue-mid)}
 
-    #app { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 0 40px; }
+    /* Success */
+    .success-wrap{min-height:100vh;background:linear-gradient(135deg,#15803d,#16a34a);display:flex;align-items:center;justify-content:center;padding:20px}
+    .success-card{background:var(--white);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);max-width:380px;width:100%}
 
-    /* ── Header ──────────────────────────────────────────────────────── */
-    .header {
-      width: 100%; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
-      padding: 20px 20px 18px; text-align: center;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 20px rgba(30,64,175,0.4);
-    }
-    .header-badge { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #bfdbfe; margin-bottom: 6px; }
-    .header-name  { font-size: 20px; font-weight: 800; color: var(--white); line-height: 1.2; }
-    .header-sub   { font-size: 12px; color: #93c5fd; margin-top: 4px; }
-    .shop-id-badge {
-      display: inline-block; margin-top: 8px;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      color: #e0f2fe; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px;
-    }
+    /* History */
+    .history-item{padding:10px 14px;border-radius:10px;border:1px solid var(--border);margin-bottom:8px;font-size:12px}
+    .history-item.superseded{opacity:.6}
 
-    /* ── Card ────────────────────────────────────────────────────────── */
-    .card {
-      background: var(--white); border-radius: 16px; margin: 20px 16px 0;
-      box-shadow: var(--shadow); width: calc(100% - 32px); max-width: 420px;
-      overflow: hidden;
-    }
-    .card-body { padding: 20px; }
-
-    /* ── Language Tabs ───────────────────────────────────────────────── */
-    .lang-section { margin-bottom: 18px; }
-    .lang-label   { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
-    .lang-tabs    { display: flex; flex-wrap: wrap; gap: 6px; }
-    .lang-tab {
-      padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border);
-      background: var(--white); color: var(--muted); font-size: 12px; cursor: pointer;
-      font-family: inherit; transition: all 0.15s; font-weight: 500;
-    }
-    .lang-tab.active {
-      border-color: var(--blue-mid); background: var(--blue-pale);
-      color: var(--blue); font-weight: 700;
-    }
-
-    /* ── Notice Box ──────────────────────────────────────────────────── */
-    .notice-box {
-      background: var(--yellow-light); border: 1.5px solid var(--yellow-bdr);
-      border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
-    }
-    .notice-title { font-weight: 700; font-size: 12px; color: #92400e; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .notice-text  { font-size: 13px; color: #374151; line-height: 1.7; }
-
-    /* ── Form ────────────────────────────────────────────────────────── */
-    .field        { margin-bottom: 14px; }
-    .field label  { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
-    .field .opt   { font-weight: 400; color: var(--muted); font-size: 12px; }
-    .field input  {
-      width: 100%; padding: 11px 14px; border-radius: 10px;
-      border: 1.5px solid var(--border); font-size: 15px; font-family: inherit;
-      background: #f8fafc; outline: none; transition: border-color 0.15s;
-    }
-    .field input:focus { border-color: var(--blue-mid); background: var(--white); }
-
-    /* ── Checkbox consent ────────────────────────────────────────────── */
-    .consent-box {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 14px; border-radius: 12px; border: 2px solid var(--border);
-      cursor: pointer; transition: border-color 0.15s; margin-bottom: 16px;
-    }
-    .consent-box.checked { border-color: var(--blue-mid); background: var(--blue-pale); }
-    .checkbox {
-      width: 22px; height: 22px; min-width: 22px; border-radius: 6px;
-      border: 2px solid #cbd5e1; background: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 14px; font-weight: 700; margin-top: 1px;
-      transition: all 0.15s;
-    }
-    .consent-box.checked .checkbox { border-color: var(--blue-mid); background: var(--blue-mid); }
-    .consent-text { font-size: 12px; color: #374151; line-height: 1.6; }
-    .consent-text .required { display: block; color: var(--red); font-weight: 600; font-size: 11px; margin-top: 5px; }
-
-    /* ── Buttons ─────────────────────────────────────────────────────── */
-    .btn {
-      width: 100%; padding: 14px; border-radius: 12px; border: none;
-      font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
-      transition: opacity 0.15s, transform 0.1s; letter-spacing: 0.3px;
-    }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary  { background: var(--blue-mid); color: var(--white); }
-    .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
-    .btn-ghost    { background: var(--white); color: var(--muted); border: 1.5px solid var(--border); font-size: 13px; margin-top: 10px; }
-
-    /* ── States ──────────────────────────────────────────────────────── */
-    .state { display: none; }
-    .state.active { display: block; }
-
-    /* ── Success State ───────────────────────────────────────────────── */
-    .success-wrap { min-height: 100vh; background: linear-gradient(135deg, #15803d, #16a34a); display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .success-card { background: var(--white); border-radius: 20px; padding: 32px 24px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2); max-width: 380px; width: 100%; }
-    .success-icon { font-size: 56px; margin-bottom: 12px; }
-    .success-title { font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 8px; }
-    .success-sub   { font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 20px; }
-    .consent-id-box { background: #f0fdf4; border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; }
-    .consent-id-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-    .consent-id-val   { font-family: 'Courier New', monospace; font-weight: 700; color: var(--green); font-size: 14px; word-break: break-all; }
-    .consent-id-hint  { font-size: 11px; color: var(--muted); margin-top: 6px; }
-
-    /* ── Error ───────────────────────────────────────────────────────── */
-    .error-box { background: var(--red-light); border-radius: 10px; padding: 10px 14px; color: var(--red); font-size: 13px; margin-bottom: 12px; }
-
-    /* ── Footer ──────────────────────────────────────────────────────── */
-    .footer { text-align: center; font-size: 11px; color: var(--muted); margin-top: 16px; padding: 0 16px; }
-
-    /* ── Spinner ─────────────────────────────────────────────────────── */
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 6px; }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
   </style>
 </head>
 <body>
-
-<!-- ── CONSENT STATE ──────────────────────────────────────────────────────── -->
-<div id="state-consent" class="state active">
-  <div id="app">
-    <div class="header">
-      <div class="header-badge">🛡️ DPDP COMPLIANT</div>
-      <div class="header-name">Sri Jay Kitrana stores</div>
-      <div class="header-sub">Digital Personal Data Protection Act, 2023</div>
-      <div class="shop-id-badge">SHOP ID: 1005</div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-
-        <!-- Language tabs (shown only if >1 language) -->
-        
-
-        <!-- DPDP Notice -->
-        <div class="notice-box">
-          <div class="notice-title">📢 Data Privacy Notice — Sec. 5, DPDP Act 2023</div>
-          <div class="notice-text" id="notice-text">Sri Jay Kitrana stores collects your name and mobile number for: Digital Invoicing, Marketing &amp; Offers. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1005/withdraw/</div>
-        </div>
-
-        <!-- Purposes summary -->
-        <div style="margin-bottom:18px;padding:10px 14px;background:#f8fafc;border-radius:10px;font-size:12px;color:#374151;">
-          <span style="font-weight:700;color:var(--blue);">Data collected for:</span>
-          <span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Digital Invoicing</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Marketing &amp; Offers</span>
-        </div>
-
-        <!-- Consent Form -->
-        <div class="field">
-          <label>Your Name <span class="opt">(Optional)</span></label>
-          <input id="inp-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name">
-        </div>
-
-        <div class="field">
-          <label>Mobile Number <span style="color:var(--red)">*</span></label>
-          <input id="inp-phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" oninput="validateForm()">
-        </div>
-
-        <!-- Explicit consent checkbox — NOT pre-checked per DPDP Sec. 6 -->
-        <div class="consent-box" id="consent-box" onclick="toggleConsent()">
-          <div class="checkbox" id="checkbox">&#10003;</div>
-          <div class="consent-text">
-            I have read and understood the notice above. I freely and explicitly give consent to <strong>Sri Jay Kitrana stores</strong> to collect and process my personal data for the stated purposes as per the DPDP Act, 2023.
-            <span class="required">⚠ Not pre-checked — your explicit consent is required (DPDP Act 2023, Sec. 6)</span>
-          </div>
-        </div>
-
-        <div class="error-box" id="error-box" style="display:none;"></div>
-
-        <button class="btn btn-primary" id="submit-btn" onclick="submitConsent()" disabled>
-          ✅ I Agree &amp; Give Consent
-        </button>
-
-        <button class="btn btn-ghost" onclick="window.location.href='https://dpdpaudits.in/c/1005/withdraw/'">
-          ↩️ Withdraw Previous Consent
-        </button>
-
-      </div>
-    </div>
-
-    <div class="footer">
-      🔒 AES-256 encrypted · Shop ID: 1005 · Powered by dpdpaudits.in
-    </div>
+<div id="app">
+  <div class="header">
+    <div class="header-badge">🛡️ DPDP COMPLIANT</div>
+    <div class="header-name">Sri Rama Kirana Stores</div>
+    <div class="header-sub">Digital Personal Data Protection Act, 2023</div>
+    <div class="shop-badge">SHOP #1005</div>
   </div>
-</div>
-
-<!-- ── SUCCESS STATE ──────────────────────────────────────────────────────── -->
-<div id="state-success" class="state">
-  <div class="success-wrap">
-    <div class="success-card">
-      <div class="success-icon">✅</div>
-      <div class="success-title">Consent Recorded!</div>
-      <div class="success-sub">
-        Your consent with <strong>Sri Jay Kitrana stores</strong> is securely recorded and protected under the DPDP Act 2023.
-      </div>
-      <div class="consent-id-box">
-        <div class="consent-id-label">Your Consent ID</div>
-        <div class="consent-id-val" id="consent-id-display">—</div>
-        <div class="consent-id-hint">Save this ID for your records · Shop #1005</div>
-      </div>
-      <button class="btn btn-ghost" onclick="window.location.href='https://dpdpaudits.in/c/1005/withdraw/'">
-        ↩️ Withdraw This Consent
-      </button>
-    </div>
-  </div>
+  <div id="screen"></div>
 </div>
 
 <script>
-  /* ── Embedded Config ─────────────────────────────────────────────────── */
-  const CONFIG = {
-    shopId:      1005,
-    merchantId:  "ad89dd92-b85c-4bb8-bb7a-7c2671aca699",
-    merchantName:"Sri Jay Kitrana stores",
-    apiBase:     '/api',
-    siteBase:    "https://dpdpaudits.in",
-    purposes:    ["invoicing","marketing"],
-    languages:   ["en"],
-    notices:     {"en":"Sri Jay Kitrana stores collects your name and mobile number for: Digital Invoicing, Marketing & Offers. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1005/withdraw/"},
-  };
+/* ── CONFIG ─────────────────────────────────────────────────── */
+const C = {
+  shopId:     1005,
+  merchantId: "e6f603df-aae9-4994-9a7f-4fea57e555e7",
+  bizName:    "Sri Rama Kirana Stores",
+  apiBase:    '/api',
+  siteBase:   "https://dpdpaudits.in",
+  purposes:   ["invoicing","marketing","loyalty","feedback","whatsapp"],
+  languages:  ["en"],
+  notices:    {"en":"Sri Rama Kirana Stores collects your name and mobile number for: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1005/withdraw/"},
+  purposeLabels: {"invoicing":"Digital Invoicing","marketing":"Marketing & Offers","loyalty":"Loyalty Rewards","feedback":"Feedback & Service Updates","whatsapp":"WhatsApp Communications"},
+  withdrawUrl: "https://dpdpaudits.in/withdraw/1005",
+};
+const ICONS = {"invoicing":"🧾","marketing":"📣","loyalty":"⭐","feedback":"💬","whatsapp":"📱"};
 
-  /* ── State ───────────────────────────────────────────────────────────── */
-  let currentLang = (function() {
-    var stored = null;
-    try { stored = localStorage.getItem('dpdp_lang'); } catch(e) {}
-    if (stored && CONFIG.languages.includes(stored)) return stored;
-    var browser = (navigator.language || 'en').split('-')[0];
-    return CONFIG.languages.includes(browser) ? browser : CONFIG.languages[0];
-  })();
-  let agreed = false;
+/* ── STATE ──────────────────────────────────────────────────── */
+let state = {
+  screen:        'phone',   // phone | new | return | modify | success | withdraw
+  lang:          'en',
+  phone:         '',
+  name:          '',
+  agreed:        false,
+  existingData:  null,      // result from /api/consents/check
+  selectedPurposes: [],     // for modify screen
+  lastConsent:   null,      // result from submit
+  error:         '',
+  loading:       false,
+  withdrawPhone: '',
+  withdrawResult: null,
+};
 
-  /* ── Init ────────────────────────────────────────────────────────────── */
-  switchLang(currentLang);
+function setState(patch) { Object.assign(state, patch); render(); }
 
-  /* ── Language Switcher ───────────────────────────────────────────────── */
-  function switchLang(lang) {
-    currentLang = lang;
-    try { localStorage.setItem('dpdp_lang', lang); } catch(e) {}
+/* ── LANG ───────────────────────────────────────────────────── */
+function switchLang(l) { setState({ lang: l }); }
+function noticeText()  { return C.notices[state.lang] || C.notices['en'] || ''; }
 
-    const noticeEl = document.getElementById('notice-text');
-    if (noticeEl) noticeEl.textContent = CONFIG.notices[lang] || CONFIG.notices['en'] || '';
+function langTabsHTML() {
+  if (C.languages.length <= 1) return '';
+  const tabs = C.languages.map(l => {
+    const names = {"en":"English","hi":"हिन्दी","te":"తెలుగు","kn":"ಕನ್ನಡ","ta":"தமிழ்","mr":"मराठी","bn":"বাংলা","gu":"ગુજરાતી","pa":"ਪੰਜਾਬੀ","ur":"اردو"};
+    return '<button class="lang-tab' + (state.lang === l ? ' active' : '') +
+           '" onclick="switchLang('' + l + '')">' + (names[l] || l.toUpperCase()) + '</button>';
+  }).join('');
+  return '<div class="lang-tabs">' + tabs + '</div>';
+}
 
-    document.querySelectorAll('.lang-tab').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
+/* ── PURPOSE HELPERS ────────────────────────────────────────── */
+function purposeRow(pid, mode, checked, onclick) {
+  const label = C.purposeLabels[pid] || pid;
+  const icon  = ICONS[pid] || '📋';
+  const cls   = 'purpose-row' + (checked ? (mode === 'view-in' ? ' opted-in' : ' sel') : '');
+  const badge = mode === 'view-in'
+    ? '<span class="purpose-badge badge-in">✓ Opted In</span>'
+    : mode === 'view-out'
+    ? '<span class="purpose-badge badge-out">Not opted in</span>'
+    : '';
+  const chk = mode === 'modify'
+    ? '<div class="purpose-chk">' + (checked ? '✓' : '') + '</div>'
+    : '';
+  const clickAttr = onclick ? ' onclick="' + onclick + '"' : '';
+  return '<div class="' + cls + '"' + clickAttr + '>' +
+         '<span class="purpose-icon">' + icon + '</span>' +
+         '<span class="purpose-label">' + label + '</span>' +
+         badge + chk + '</div>';
+}
 
-    document.documentElement.lang = lang;
+/* ── SCREENS ────────────────────────────────────────────────── */
+
+// ── SCREEN 1: Phone Entry ────────────────────────────────────
+function renderPhone() {
+  return '<div class="card">' +
+    '<div class="card-title">📱 Enter your mobile number</div>' +
+    '<p style="font-size:13px;color:var(--muted);margin-bottom:16px">We'll check if you've consented before and show your current status.</p>' +
+    '<div class="field"><label>Mobile Number <span style="color:var(--red)">*</span></label>' +
+    '<input class="inp" id="inp-phone" type="tel" placeholder="+91 98765 43210" value="' + esc(state.phone) + '" oninput="state.phone=this.value">' +
+    '</div>' +
+    (state.error ? '<div class="err">⚠️ ' + esc(state.error) + '</div>' : '') +
+    '<button class="btn btn-primary" ' + (state.loading ? 'disabled' : '') + ' onclick="checkPhone()">' +
+    (state.loading ? '<span class="spinner"></span> Checking…' : 'Continue →') + '</button>' +
+    '</div>';
+}
+
+// ── SCREEN 2a: New User ──────────────────────────────────────
+function renderNew() {
+  return '<div class="card">' +
+    langTabsHTML() +
+    '<div class="notice"><div class="notice-title">📢 Data Privacy Notice — Sec. 5, DPDP Act 2023</div>' +
+    '<div class="notice-text" id="notice-text">' + esc(noticeText()) + '</div></div>' +
+    '<div style="margin-bottom:18px;padding:10px 14px;background:#f8fafc;border-radius:10px;font-size:12px;color:#374151">' +
+    '<span style="font-weight:700;color:var(--blue-mid)">Data used for: </span>' +
+    C.purposes.map(p => '<span style="display:inline-block;background:var(--blue-pale);color:var(--blue-mid);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600">' + esc(C.purposeLabels[p] || p) + '</span>').join('') +
+    '</div>' +
+    '<div class="field"><label>Your Name <span style="font-weight:400;color:#94a3b8;font-size:12px">(Optional)</span></label>' +
+    '<input class="inp" id="inp-name" type="text" placeholder="e.g. Priya Sharma" value="' + esc(state.name) + '" oninput="state.name=this.value"></div>' +
+    '<div class="field"><label>Mobile <span style="color:#94a3b8;font-size:12px;font-weight:400">' + maskPhone(state.phone) + '</span></label></div>' +
+    '<div class="checkbox-row' + (state.agreed ? ' checked' : '') + '" onclick="toggle('agreed')">' +
+    '<div class="chk">' + (state.agreed ? '✓' : '') + '</div>' +
+    '<div class="chk-text">I have read and understood the notice. I freely and explicitly consent to <strong>' + esc(C.bizName) + '</strong> collecting my data for the stated purposes.<br>' +
+    '<span style="color:var(--red);font-weight:600;font-size:11px;margin-top:4px;display:block">⚠ Not pre-checked — explicit consent required (DPDP Act 2023, Sec. 6)</span></div></div>' +
+    (state.error ? '<div class="err">⚠️ ' + esc(state.error) + '</div>' : '') +
+    '<button class="btn btn-primary" ' + (!state.agreed || state.loading ? 'disabled' : '') + ' onclick="submitConsent()">' +
+    (state.loading ? '<span class="spinner"></span> Recording…' : '✅ I Agree & Give Consent') + '</button>' +
+    '<button class="btn btn-ghost" onclick="setState({screen:'phone',error:''})">← Change phone number</button>' +
+    '</div>';
+}
+
+// ── SCREEN 2b: Returning User ────────────────────────────────
+function renderReturn() {
+  const d = state.existingData;
+  const inPurposes  = d.optedIn  || [];
+  const outPurposes = d.optedOut || [];
+  return '<div class="card">' +
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding:12px 14px;background:var(--green-light);border-radius:12px;border:1.5px solid var(--green)">' +
+    '<span style="font-size:24px">✅</span>' +
+    '<div><div style="font-weight:700;font-size:14px;color:var(--green)">You have an active consent</div>' +
+    '<div style="font-size:12px;color:#374151">Consent ID: ' + esc(d.consentId) + ' · v' + d.consentVersion + '</div></div></div>' +
+    (inPurposes.length ? '<div style="font-weight:700;font-size:13px;color:var(--text);margin-bottom:8px">✅ Opted In</div>' +
+    inPurposes.map(p => purposeRow(p, 'view-in', true, null)).join('') : '') +
+    (outPurposes.length ? '<div style="font-weight:700;font-size:13px;color:var(--text);margin:14px 0 8px">⬜ Not Opted In</div>' +
+    outPurposes.map(p => purposeRow(p, 'view-out', false, null)).join('') : '') +
+    (d.history && d.history.length > 1 ? '<div style="margin-top:14px"><div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px">CONSENT HISTORY</div>' +
+    d.history.map(h => '<div class="history-item ' + (h.status === 'superseded' ? 'superseded' : '') + '">' +
+    '<span style="font-family:monospace;font-size:11px;color:var(--blue-mid)">' + esc(h.id) + '</span> · ' +
+    '<span style="font-size:11px;color:var(--muted)">' + h.status + ' · v' + (h.consent_version||1) + ' · ' + new Date(h.created_at).toLocaleDateString('en-IN') + '</span></div>').join('') + '</div>' : '') +
+    (state.error ? '<div class="err">⚠️ ' + esc(state.error) + '</div>' : '') +
+    '<div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">' +
+    (outPurposes.length > 0
+      ? '<button class="btn btn-primary" onclick="startModify()">✏️ Modify My Consent</button>'
+      : '<button class="btn btn-primary" style="background:#64748b" disabled>✅ You have opted into all purposes</button>') +
+    '<button class="btn btn-danger" onclick="setState({screen:'withdraw'})">↩️ Withdraw Consent</button>' +
+    '<button class="btn btn-ghost" onclick="setState({screen:'phone',error:''})">← Change phone number</button>' +
+    '</div></div>';
+}
+
+// ── SCREEN 3: Modify Consent ─────────────────────────────────
+function renderModify() {
+  const d = state.existingData;
+  return '<div class="card">' +
+    '<div class="card-title">✏️ Modify Consent — Shop #' + C.shopId + '</div>' +
+    '<p style="font-size:13px;color:var(--muted);margin-bottom:16px">Select the purposes you want to consent to. Your previous consent will be superseded and a new one created.</p>' +
+    C.purposes.map((p, i) => {
+      const sel = state.selectedPurposes.includes(p);
+      return purposeRow(p, 'modify', sel, 'togglePurpose('' + p + '')');
+    }).join('') +
+    (state.error ? '<div class="err">⚠️ ' + esc(state.error) + '</div>' : '') +
+    '<button class="btn btn-primary" ' + (state.selectedPurposes.length === 0 || state.loading ? 'disabled' : '') + ' onclick="submitModify()">' +
+    (state.loading ? '<span class="spinner"></span> Saving…' : '✅ Save Updated Consent') + '</button>' +
+    '<button class="btn btn-ghost" onclick="setState({screen:'return',error:''})">← Back</button>' +
+    '</div>';
+}
+
+// ── SCREEN 4: Success ────────────────────────────────────────
+function renderSuccess() {
+  const c = state.lastConsent;
+  return '<div class="success-wrap" id="app"><div class="success-card">' +
+    '<div style="font-size:56px;margin-bottom:12px">' + (c && c.isModification ? '🔄' : '✅') + '</div>' +
+    '<div style="font-weight:800;font-size:20px;color:var(--green);margin-bottom:8px">' +
+    (c && c.isModification ? 'Consent Updated!' : 'Consent Recorded!') + '</div>' +
+    '<div style="color:#374151;font-size:13px;line-height:1.6;margin-bottom:20px">' +
+    'Your consent with <strong>' + esc(C.bizName) + '</strong> is securely stored and protected under DPDP Act 2023.</div>' +
+    '<div style="background:#f0fdf4;border-radius:12px;padding:14px 16px;margin-bottom:8px">' +
+    '<div style="font-size:11px;color:var(--muted);margin-bottom:4px">Consent ID</div>' +
+    '<div style="font-family:monospace;font-weight:700;color:var(--green);font-size:13px;word-break:break-all">' + esc(c ? c.consentId : '') + '</div>' +
+    '</div>' +
+    '<div style="font-size:11px;color:#94a3b8;margin-bottom:20px">Shop #' + C.shopId + (c ? ' · Version ' + c.consentVersion : '') + ' · Save this ID for your records</div>' +
+    '<button class="btn btn-ghost" style="margin-top:0" onclick="setState({screen:'withdraw',withdrawPhone:state.phone})">↩️ Withdraw This Consent</button>' +
+    '</div></div>';
+}
+
+// ── SCREEN 5: Withdraw ───────────────────────────────────────
+function renderWithdraw() {
+  if (state.withdrawResult) {
+    return '<div class="card">' +
+      '<div style="text-align:center;margin-bottom:20px"><div style="font-size:48px;margin-bottom:8px">✅</div>' +
+      '<div style="font-weight:800;font-size:18px;color:var(--green)">Consent Withdrawn!</div>' +
+      '<div style="font-size:13px;color:#374151;margin-top:6px">' + state.withdrawResult.withdrawn + ' record(s) withdrawn immediately.</div></div>' +
+      '<button class="btn btn-primary" onclick="location.reload()">Done</button></div>';
   }
+  return '<div class="card">' +
+    '<div class="card-title">↩️ Withdraw Consent</div>' +
+    '<div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:#374151">' +
+    '<strong style="color:var(--blue-mid)">⚖️ Your Right:</strong> You may withdraw consent at any time (DPDP Act 2023, Section 6). Data processing will stop immediately.' +
+    '</div>' +
+    '<div class="field"><label>Your registered Mobile Number</label>' +
+    '<input class="inp" id="inp-withdraw" type="tel" placeholder="+91 98765 43210" value="' + esc(state.withdrawPhone) + '" oninput="state.withdrawPhone=this.value"></div>' +
+    (state.error ? '<div class="err">⚠️ ' + esc(state.error) + '</div>' : '') +
+    '<button class="btn btn-danger" style="background:var(--red)" ' + (!state.withdrawPhone.trim() || state.loading ? 'disabled' : '') + ' onclick="submitWithdraw()">' +
+    (state.loading ? '<span class="spinner"></span> Processing…' : '↩️ Withdraw My Consent') + '</button>' +
+    '<button class="btn btn-ghost" onclick="setState({screen:'phone',error:'',withdrawPhone:''})">← Back</button>' +
+    '</div>';
+}
 
-  /* ── Checkbox ────────────────────────────────────────────────────────── */
-  function toggleConsent() {
-    agreed = !agreed;
-    document.getElementById('consent-box').classList.toggle('checked', agreed);
-    document.getElementById('checkbox').style.opacity = agreed ? '1' : '0';
-    validateForm();
+/* ── RENDER ─────────────────────────────────────────────────── */
+function render() {
+  const screen = document.getElementById('screen');
+  if (!screen) return;
+  if (state.screen === 'success') {
+    document.getElementById('app').outerHTML = renderSuccess();
+    return;
   }
-  // Hide checkmark initially (not pre-checked)
-  document.getElementById('checkbox').style.opacity = '0';
+  screen.innerHTML = {
+    phone:    renderPhone,
+    new:      renderNew,
+    return:   renderReturn,
+    modify:   renderModify,
+    withdraw: renderWithdraw,
+  }[state.screen]?.() || renderPhone();
 
-  /* ── Validation ──────────────────────────────────────────────────────── */
-  function validateForm() {
-    const phone = document.getElementById('inp-phone').value.trim();
-    const btn   = document.getElementById('submit-btn');
-    btn.disabled = !(phone.length >= 10 && agreed);
-  }
+  // Re-attach notice text reactivity
+  const nt = document.getElementById('notice-text');
+  if (nt) nt.textContent = noticeText();
+}
 
-  /* ── Submit Consent ──────────────────────────────────────────────────── */
-  async function submitConsent() {
-    const phone = document.getElementById('inp-phone').value.trim();
-    const name  = document.getElementById('inp-name').value.trim();
-    const btn   = document.getElementById('submit-btn');
-    const errEl = document.getElementById('error-box');
+/* ── ACTIONS ────────────────────────────────────────────────── */
+function toggle(key) { setState({ [key]: !state[key] }); }
 
-    if (!phone || !agreed) return;
+function togglePurpose(pid) {
+  const sel = state.selectedPurposes;
+  setState({ selectedPurposes: sel.includes(pid) ? sel.filter(p => p !== pid) : [...sel, pid] });
+}
 
-    btn.disabled  = true;
-    btn.innerHTML = '<span class="spinner"></span> Recording…';
-    errEl.style.display = 'none';
+function startModify() {
+  // Pre-select currently opted-in purposes
+  const optedIn = state.existingData?.optedIn || [];
+  setState({ screen: 'modify', selectedPurposes: [...optedIn], error: '' });
+}
 
-    try {
-      const res = await fetch(CONFIG.apiBase + '/consents', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          shopId:       CONFIG.shopId,
-          merchantId:   CONFIG.merchantId,
-          customerName: name || undefined,
-          phone,
-          language:     currentLang,
-          purposes:     CONFIG.purposes,
-        }),
-      });
+async function checkPhone() {
+  const phone = document.getElementById('inp-phone')?.value?.trim() || state.phone.trim();
+  if (!phone) return setState({ error: 'Please enter your mobile number' });
+  setState({ loading: true, error: '', phone });
+  try {
+    const res  = await fetch(C.apiBase + '/consents/check?shopId=' + C.shopId + '&phone=' + encodeURIComponent(phone));
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Check failed');
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Submission failed');
-
-      // Show success state
-      document.getElementById('consent-id-display').textContent = data.consentId;
-      document.getElementById('state-consent').classList.remove('active');
-      document.getElementById('state-success').classList.add('active');
-      window.scrollTo(0, 0);
-
-    } catch (err) {
-      errEl.textContent = '⚠️ ' + (err.message || 'Could not submit. Please try again.');
-      errEl.style.display = 'block';
-      btn.disabled  = false;
-      btn.innerHTML = '✅ I Agree &amp; Give Consent';
+    if (data.hasConsent) {
+      setState({ loading: false, screen: 'return', existingData: data });
+    } else {
+      setState({ loading: false, screen: 'new', existingData: data });
     }
+  } catch (err) {
+    setState({ loading: false, error: err.message });
   }
+}
+
+async function submitConsent() {
+  if (!state.agreed) return;
+  setState({ loading: true, error: '' });
+  try {
+    const name = document.getElementById('inp-name')?.value?.trim() || state.name;
+    const res  = await fetch(C.apiBase + '/consents', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ shopId: C.shopId, customerName: name || undefined,
+        phone: state.phone, language: state.lang, purposes: C.purposes }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Submission failed');
+    setState({ loading: false, screen: 'success', lastConsent: data });
+  } catch (err) {
+    setState({ loading: false, error: err.message });
+  }
+}
+
+async function submitModify() {
+  if (!state.selectedPurposes.length) return;
+  setState({ loading: true, error: '' });
+  try {
+    const res  = await fetch(C.apiBase + '/consents', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ shopId: C.shopId, phone: state.phone,
+        language: state.lang, purposes: state.selectedPurposes }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Modification failed');
+    setState({ loading: false, screen: 'success', lastConsent: data });
+  } catch (err) {
+    setState({ loading: false, error: err.message });
+  }
+}
+
+async function submitWithdraw() {
+  const phone = document.getElementById('inp-withdraw')?.value?.trim() || state.withdrawPhone.trim();
+  if (!phone) return;
+  setState({ loading: true, error: '', withdrawPhone: phone });
+  try {
+    const res  = await fetch(C.apiBase + '/consents/withdraw', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, shopId: C.shopId }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Withdrawal failed');
+    setState({ loading: false, withdrawResult: data });
+  } catch (err) {
+    setState({ loading: false, error: err.message });
+  }
+}
+
+function maskPhone(phone) {
+  if (!phone || phone.length < 4) return phone;
+  return phone.replace(/d(?=d{4})/g, '*');
+}
+
+/* ── INIT ───────────────────────────────────────────────────── */
+render();
 </script>
 </body>
 </html>
