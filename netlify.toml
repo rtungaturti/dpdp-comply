@@ -7,7 +7,7 @@
 # Must come FIRST so it takes priority over the SPA catch-all
 [[redirects]]
   from   = "/api/*"
-  to     = "https://api.dpdpaudits.in/:splat"
+  to     = "https://dpdp-api-production.up.railway.app/:splat"
   status = 200
   force  = true
 
