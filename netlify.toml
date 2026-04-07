@@ -17,9 +17,16 @@
   to     = "/c/:splat"
   status = 200
 
+# /c/<shopId>/withdraw/ — serve React SPA
+[[redirects]]
+  from   = "/c/*/withdraw/*"
+  to     = "/index.html"
+  status = 200
+
+# /withdraw/* — serve React SPA so React Router renders WithdrawalPage  
 [[redirects]]
   from   = "/withdraw/*"
-  to     = "/withdraw/:splat"
+  to     = "/index.html"
   status = 200
 
 # SPA catch-all (React Router) — must be LAST
