@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e40af">
+  <meta name="description" content="Data consent page for Ram Mobile Shop — DPDP Act 2023 compliant">
+  <meta property="og:title" content="Consent — Ram Mobile Shop">
+  <meta property="og:description" content="DPDP Act 2023 compliant consent collection">
+  <title>Consent — Ram Mobile Shop</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:         #1e40af;
+      --blue-mid:     #2563eb;
+      --blue-light:   #dbeafe;
+      --blue-pale:    #eff6ff;
+      --green:        #16a34a;
+      --green-light:  #dcfce7;
+      --red:          #dc2626;
+      --red-light:    #fef2f2;
+      --yellow-light: #fffbeb;
+      --yellow-bdr:   #fde68a;
+      --text:         #1e293b;
+      --muted:        #64748b;
+      --border:       #e2e8f0;
+      --bg:           #f1f5f9;
+      --white:        #ffffff;
+      --shadow:       0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    html, body { height: 100%; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    #app { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 0 40px; }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    .header {
+      width: 100%; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+      padding: 20px 20px 18px; text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 20px rgba(30,64,175,0.4);
+    }
+    .header-badge { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #bfdbfe; margin-bottom: 6px; }
+    .header-name  { font-size: 20px; font-weight: 800; color: var(--white); line-height: 1.2; }
+    .header-sub   { font-size: 12px; color: #93c5fd; margin-top: 4px; }
+    .shop-id-badge {
+      display: inline-block; margin-top: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      color: #e0f2fe; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px;
+    }
+
+    /* ── Card ────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--white); border-radius: 16px; margin: 20px 16px 0;
+      box-shadow: var(--shadow); width: calc(100% - 32px); max-width: 420px;
+      overflow: hidden;
+    }
+    .card-body { padding: 20px; }
+
+    /* ── Language Tabs ───────────────────────────────────────────────── */
+    .lang-section { margin-bottom: 18px; }
+    .lang-label   { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+    .lang-tabs    { display: flex; flex-wrap: wrap; gap: 6px; }
+    .lang-tab {
+      padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border);
+      background: var(--white); color: var(--muted); font-size: 12px; cursor: pointer;
+      font-family: inherit; transition: all 0.15s; font-weight: 500;
+    }
+    .lang-tab.active {
+      border-color: var(--blue-mid); background: var(--blue-pale);
+      color: var(--blue); font-weight: 700;
+    }
+
+    /* ── Notice Box ──────────────────────────────────────────────────── */
+    .notice-box {
+      background: var(--yellow-light); border: 1.5px solid var(--yellow-bdr);
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
+    }
+    .notice-title { font-weight: 700; font-size: 12px; color: #92400e; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .notice-text  { font-size: 13px; color: #374151; line-height: 1.7; }
+
+    /* ── Form ────────────────────────────────────────────────────────── */
+    .field        { margin-bottom: 14px; }
+    .field label  { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+    .field .opt   { font-weight: 400; color: var(--muted); font-size: 12px; }
+    .field input  {
+      width: 100%; padding: 11px 14px; border-radius: 10px;
+      border: 1.5px solid var(--border); font-size: 15px; font-family: inherit;
+      background: #f8fafc; outline: none; transition: border-color 0.15s;
+    }
+    .field input:focus { border-color: var(--blue-mid); background: var(--white); }
+
+    /* ── Checkbox consent ────────────────────────────────────────────── */
+    .consent-box {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 14px; border-radius: 12px; border: 2px solid var(--border);
+      cursor: pointer; transition: border-color 0.15s; margin-bottom: 16px;
+    }
+    .consent-box.checked { border-color: var(--blue-mid); background: var(--blue-pale); }
+    .checkbox {
+      width: 22px; height: 22px; min-width: 22px; border-radius: 6px;
+      border: 2px solid #cbd5e1; background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 14px; font-weight: 700; margin-top: 1px;
+      transition: all 0.15s;
+    }
+    .consent-box.checked .checkbox { border-color: var(--blue-mid); background: var(--blue-mid); }
+    .consent-text { font-size: 12px; color: #374151; line-height: 1.6; }
+    .consent-text .required { display: block; color: var(--red); font-weight: 600; font-size: 11px; margin-top: 5px; }
+
+    /* ── Buttons ─────────────────────────────────────────────────────── */
+    .btn {
+      width: 100%; padding: 14px; border-radius: 12px; border: none;
+      font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s; letter-spacing: 0.3px;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary  { background: var(--blue-mid); color: var(--white); }
+    .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .btn-ghost    { background: var(--white); color: var(--muted); border: 1.5px solid var(--border); font-size: 13px; margin-top: 10px; }
+
+    /* ── States ──────────────────────────────────────────────────────── */
+    .state { display: none; }
+    .state.active { display: block; }
+
+    /* ── Success State ───────────────────────────────────────────────── */
+    .success-wrap { min-height: 100vh; background: linear-gradient(135deg, #15803d, #16a34a); display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .success-card { background: var(--white); border-radius: 20px; padding: 32px 24px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2); max-width: 380px; width: 100%; }
+    .success-icon { font-size: 56px; margin-bottom: 12px; }
+    .success-title { font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+    .success-sub   { font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 20px; }
+    .consent-id-box { background: #f0fdf4; border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; }
+    .consent-id-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .consent-id-val   { font-family: 'Courier New', monospace; font-weight: 700; color: var(--green); font-size: 14px; word-break: break-all; }
+    .consent-id-hint  { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+    /* ── Error ───────────────────────────────────────────────────────── */
+    .error-box { background: var(--red-light); border-radius: 10px; padding: 10px 14px; color: var(--red); font-size: 13px; margin-bottom: 12px; }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    .footer { text-align: center; font-size: 11px; color: var(--muted); margin-top: 16px; padding: 0 16px; }
+
+    /* ── Spinner ─────────────────────────────────────────────────────── */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 6px; }
+  </style>
+</head>
+<body>
+
+<!-- ── CONSENT STATE ──────────────────────────────────────────────────────── -->
+<div id="state-consent" class="state active">
+  <div id="app">
+    <div class="header">
+      <div class="header-badge">🛡️ DPDP COMPLIANT</div>
+      <div class="header-name">Ram Mobile Shop</div>
+      <div class="header-sub">Digital Personal Data Protection Act, 2023</div>
+      <div class="shop-id-badge">SHOP ID: 1003</div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+
+        <!-- Language tabs (shown only if >1 language) -->
+        
+
+        <!-- DPDP Notice -->
+        <div class="notice-box">
+          <div class="notice-title">📢 Data Privacy Notice — Sec. 5, DPDP Act 2023</div>
+          <div class="notice-text" id="notice-text">Ram Mobile Shop collects your name and mobile number for: Digital Invoicing, Marketing &amp; Offers, Loyalty Rewards, Feedback &amp; Service Updates, WhatsApp Communications. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1003/withdraw/</div>
+        </div>
+
+        <!-- Purposes summary -->
+        <div style="margin-bottom:18px;padding:10px 14px;background:#f8fafc;border-radius:10px;font-size:12px;color:#374151;">
+          <span style="font-weight:700;color:var(--blue);">Data collected for:</span>
+          <span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Digital Invoicing</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Marketing &amp; Offers</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Loyalty Rewards</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">Feedback &amp; Service Updates</span><span style="display:inline-block;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;font-weight:600;">WhatsApp Communications</span>
+        </div>
+
+        <!-- Consent Form -->
+        <div class="field">
+          <label>Your Name <span class="opt">(Optional)</span></label>
+          <input id="inp-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label>Mobile Number <span style="color:var(--red)">*</span></label>
+          <input id="inp-phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" oninput="validateForm()">
+        </div>
+
+        <!-- Explicit consent checkbox — NOT pre-checked per DPDP Sec. 6 -->
+        <div class="consent-box" id="consent-box" onclick="toggleConsent()">
+          <div class="checkbox" id="checkbox">&#10003;</div>
+          <div class="consent-text">
+            I have read and understood the notice above. I freely and explicitly give consent to <strong>Ram Mobile Shop</strong> to collect and process my personal data for the stated purposes as per the DPDP Act, 2023.
+            <span class="required">⚠ Not pre-checked — your explicit consent is required (DPDP Act 2023, Sec. 6)</span>
+          </div>
+        </div>
+
+        <div class="error-box" id="error-box" style="display:none;"></div>
+
+        <button class="btn btn-primary" id="submit-btn" onclick="submitConsent()" disabled>
+          ✅ I Agree &amp; Give Consent
+        </button>
+
+        <button class="btn btn-ghost" onclick="window.location.href='https://dpdpaudits.in/c/1003/withdraw/'">
+          ↩️ Withdraw Previous Consent
+        </button>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      🔒 AES-256 encrypted · Shop ID: 1003 · Powered by dpdpaudits.in
+    </div>
+  </div>
+</div>
+
+<!-- ── SUCCESS STATE ──────────────────────────────────────────────────────── -->
+<div id="state-success" class="state">
+  <div class="success-wrap">
+    <div class="success-card">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Consent Recorded!</div>
+      <div class="success-sub">
+        Your consent with <strong>Ram Mobile Shop</strong> is securely recorded and protected under the DPDP Act 2023.
+      </div>
+      <div class="consent-id-box">
+        <div class="consent-id-label">Your Consent ID</div>
+        <div class="consent-id-val" id="consent-id-display">—</div>
+        <div class="consent-id-hint">Save this ID for your records · Shop #1003</div>
+      </div>
+      <button class="btn btn-ghost" onclick="window.location.href='https://dpdpaudits.in/c/1003/withdraw/'">
+        ↩️ Withdraw This Consent
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Embedded Config ─────────────────────────────────────────────────── */
+  const CONFIG = {
+    shopId:      1003,
+    merchantId:  "6f89914e-9167-415d-ac6b-bf544782710a",
+    merchantName:"Ram Mobile Shop",
+    apiBase:     "http://localhost/api",
+    siteBase:    "https://dpdpaudits.in",
+    purposes:    ["invoicing","marketing","loyalty","feedback","whatsapp"],
+    languages:   ["en"],
+    notices:     {"en":"Ram Mobile Shop collects your name and mobile number for: Digital Invoicing, Marketing & Offers, Loyalty Rewards, Feedback & Service Updates, WhatsApp Communications. Your personal data is protected under the Digital Personal Data Protection (DPDP) Act, 2023. You may withdraw consent at any time at: https://dpdpaudits.in/c/1003/withdraw/"},
+  };
+
+  /* ── State ───────────────────────────────────────────────────────────── */
+  let currentLang = (function() {
+    const stored = localStorage.getItem('dpdp_lang');
+    if (stored && CONFIG.languages.includes(stored)) return stored;
+    const browser = (navigator.language || 'en').split('-')[0];
+    return CONFIG.languages.includes(browser) ? browser : CONFIG.languages[0];
+  })();
+  let agreed = false;
+
+  /* ── Init ────────────────────────────────────────────────────────────── */
+  switchLang(currentLang);
+
+  /* ── Language Switcher ───────────────────────────────────────────────── */
+  function switchLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('dpdp_lang', lang);
+
+    const noticeEl = document.getElementById('notice-text');
+    if (noticeEl) noticeEl.textContent = CONFIG.notices[lang] || CONFIG.notices['en'] || '';
+
+    document.querySelectorAll('.lang-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    document.documentElement.lang = lang;
+  }
+
+  /* ── Checkbox ────────────────────────────────────────────────────────── */
+  function toggleConsent() {
+    agreed = !agreed;
+    document.getElementById('consent-box').classList.toggle('checked', agreed);
+    document.getElementById('checkbox').style.opacity = agreed ? '1' : '0';
+    validateForm();
+  }
+  // Hide checkmark initially (not pre-checked)
+  document.getElementById('checkbox').style.opacity = '0';
+
+  /* ── Validation ──────────────────────────────────────────────────────── */
+  function validateForm() {
+    const phone = document.getElementById('inp-phone').value.trim();
+    const btn   = document.getElementById('submit-btn');
+    btn.disabled = !(phone.length >= 10 && agreed);
+  }
+
+  /* ── Submit Consent ──────────────────────────────────────────────────── */
+  async function submitConsent() {
+    const phone = document.getElementById('inp-phone').value.trim();
+    const name  = document.getElementById('inp-name').value.trim();
+    const btn   = document.getElementById('submit-btn');
+    const errEl = document.getElementById('error-box');
+
+    if (!phone || !agreed) return;
+
+    btn.disabled  = true;
+    btn.innerHTML = '<span class="spinner"></span> Recording…';
+    errEl.style.display = 'none';
+
+    try {
+      const res = await fetch(CONFIG.apiBase + '/consents', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          shopId:       CONFIG.shopId,
+          merchantId:   CONFIG.merchantId,
+          customerName: name || undefined,
+          phone,
+          language:     currentLang,
+          purposes:     CONFIG.purposes,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Submission failed');
+
+      // Show success state
+      document.getElementById('consent-id-display').textContent = data.consentId;
+      document.getElementById('state-consent').classList.remove('active');
+      document.getElementById('state-success').classList.add('active');
+      window.scrollTo(0, 0);
+
+    } catch (err) {
+      errEl.textContent = '⚠️ ' + (err.message || 'Could not submit. Please try again.');
+      errEl.style.display = 'block';
+      btn.disabled  = false;
+      btn.innerHTML = '✅ I Agree &amp; Give Consent';
+    }
+  }
+</script>
+</body>
+</html>
