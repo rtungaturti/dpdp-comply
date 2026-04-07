@@ -242,7 +242,7 @@
     shopId:      1001,
     merchantId:  "fffb7e5d-861b-4e4a-b360-1ce0c8805464",
     merchantName:"Miyapur-Baba Rmdev Store",
-    apiBase:     "http://localhost/api",
+    apiBase:     '/api',
     siteBase:    "https://dpdpaudits.in",
     purposes:    ["invoicing","marketing","loyalty","feedback","whatsapp"],
     languages:   ["en"],
@@ -251,9 +251,10 @@
 
   /* ── State ───────────────────────────────────────────────────────────── */
   let currentLang = (function() {
-    const stored = localStorage.getItem('dpdp_lang');
+    var stored = null;
+    try { stored = localStorage.getItem('dpdp_lang'); } catch(e) {}
     if (stored && CONFIG.languages.includes(stored)) return stored;
-    const browser = (navigator.language || 'en').split('-')[0];
+    var browser = (navigator.language || 'en').split('-')[0];
     return CONFIG.languages.includes(browser) ? browser : CONFIG.languages[0];
   })();
   let agreed = false;
@@ -264,7 +265,7 @@
   /* ── Language Switcher ───────────────────────────────────────────────── */
   function switchLang(lang) {
     currentLang = lang;
-    localStorage.setItem('dpdp_lang', lang);
+    try { localStorage.setItem('dpdp_lang', lang); } catch(e) {}
 
     const noticeEl = document.getElementById('notice-text');
     if (noticeEl) noticeEl.textContent = CONFIG.notices[lang] || CONFIG.notices['en'] || '';
