@@ -2,34 +2,29 @@
   command = "npm install && npm run build"
   publish = "dist"
 
-# Proxy /api/* to the Docker backend — fixes mobile "Failed to fetch"
-# Mobile calls dpdpaudits.in/api/... → Netlify forwards to the actual backend
-# Must come FIRST so it takes priority over the SPA catch-all
 [[redirects]]
-  from   = "/api/*"
-  to     = "https://dpdp-api-production.up.railway.app/api/:splat"
+  from  = "/api/*"
+  to    = "https://dpdp-api-production.up.railway.app/api/:splat"
   status = 200
   force  = true
 
-# Static consent pages — served directly from dist/c/<shopId>/
-[[redirects]]
-  from   = "/c/*"
-  to     = "/c/:splat"
-  status = 200
-
-# /c/<shopId>/withdraw/ — serve React SPA
+# ↓ MORE SPECIFIC — must be BEFORE /c/*
 [[redirects]]
   from   = "/c/*/withdraw/*"
   to     = "/index.html"
   status = 200
 
-# /withdraw/* — serve React SPA so React Router renders WithdrawalPage  
+# ↓ LESS SPECIFIC — catches all other /c/ paths after withdraw is handled
+[[redirects]]
+  from   = "/c/*"
+  to     = "/c/:splat"
+  status = 200
+
 [[redirects]]
   from   = "/withdraw/*"
   to     = "/index.html"
   status = 200
 
-# SPA catch-all (React Router) — must be LAST
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
