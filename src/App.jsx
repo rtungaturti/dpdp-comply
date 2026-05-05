@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 /*
-  ── Aparajitha exact brand colours (from uploaded screenshot) ──────────
+  
   #5C3098  – Aparajitha Purple   (Enquire Now button background)
   #1B2A4A  – Navy                (nav text, headings)
   #3A8DC5  – Icon Blue           (mega-menu icon stroke colour)
@@ -645,7 +645,7 @@ export default function App() {
           height:72,position:"relative"}}>
 
           {/* Logo */}
-          <a href="#" aria-label="ACL CoreTech Labs – DPDP Comply Home"
+          
             style={{display:"flex",alignItems:"center",textDecoration:"none",flexShrink:0}}>
             <img
               src=" "
