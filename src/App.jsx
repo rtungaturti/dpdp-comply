@@ -648,8 +648,8 @@ export default function App() {
           <a href="#" aria-label="ACL CoreTech Labs – DPDP Comply Home"
             style={{display:"flex",alignItems:"center",textDecoration:"none",flexShrink:0}}>
             <img
-              src="/logo.png"
-              alt="ACL CoreTech Labs – DPDP Audits for SMBs"
+              src=" "
+              alt=" "
               style={{height:294,width:"auto",maxWidth:220,objectFit:"contain",display:"block"}}
             />
           </a>
